@@ -97,6 +97,29 @@ void put_i(int num){
 }
 
 
+// 打印hex类型
+
+char* int2hexstr(unsigned int values)
+{
+	const char digits[17] = "0123456789ABCDEF";
+	char *crtn = crtn1;
+	crtn += 31;
+	*crtn = '\0';
+	do
+	{
+		*--crtn = digits[values%16];
+	} while (values /= 16);
+
+	return crtn;
+}
+
+void put_h(int num){
+	char * p = int2hexstr(num);
+	put_s("0x");
+	put_s(p);
+	return ;
+}
+
 
 void uart_sample(void){
 
@@ -105,6 +128,7 @@ void uart_sample(void){
 
 	put_s("Welcome use uart!\n\r");
 	put_i(10);
+	put_h(0x25698);
 
 
 	unsigned char ch;
